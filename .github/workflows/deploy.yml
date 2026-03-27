@@ -1,13 +1,16 @@
-name: Deploy Bot
+name: CI
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy:
-    name: Deploy to server via SSH
+  lint:
+    name: Check code
     runs-on: ubuntu-latest
 
     steps:
@@ -22,18 +25,5 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd ~/getvpn_bot
-            git pull origin main
-            pip install -r requirements.txt
-            # Перезапуск через systemd (якщо налаштовано)
-            sudo systemctl restart getvpn_bot || true
-            # Або через PM2 (якщо налаштовано)
-            # pm2 restart getvpn_bot || true
+      - name: Check syntax
+        run: python -m py_compile main.py app/config.py app/database.py app/handlers.py app/keyboards.py

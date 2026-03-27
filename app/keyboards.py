@@ -5,6 +5,8 @@ from telegram import (
     ReplyKeyboardMarkup,
 )
 
+from app.config import SUPPORT_BOT_URL
+
 
 def share_phone_keyboard() -> ReplyKeyboardMarkup:
     return ReplyKeyboardMarkup(
@@ -18,7 +20,7 @@ def main_menu_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🔑 Ключі", callback_data="menu_keys")],
         [InlineKeyboardButton("📖 Як підключити", callback_data="menu_info")],
-        [InlineKeyboardButton("💬 Підтримка", url="https://t.me/karasiqsupport_bot")],
+        [InlineKeyboardButton("💬 Підтримка", url=SUPPORT_BOT_URL)],
     ])
 
 

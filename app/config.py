@@ -14,6 +14,8 @@ DB_NAME: str = os.getenv("DB_NAME", "vpnbot")
 KEY_BULGARIA: str = os.getenv("KEY_BULGARIA", "")
 KEY_GEORGIA: str = os.getenv("KEY_GEORGIA", "")
 
+SUPPORT_BOT_URL: str = os.getenv("SUPPORT_BOT_URL", "https://t.me/karasiqsupport_bot")
+
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN не вказано у файлі .env")
 
