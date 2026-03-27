@@ -35,7 +35,7 @@ cd getvpn_bot
 
 **2. Встановити залежності**
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 **3. Підготувати базу даних**
@@ -51,7 +51,7 @@ cp .env.example .env
 
 **5. Запустити**
 ```bash
-python main.py
+python3 main.py
 ```
 
 ---
