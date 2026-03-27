@@ -8,12 +8,19 @@ Telegram-бот для видачі VPN-ключів користувачам з
 
 ```
 getvpn_bot/
-├── bot.py            # Головний файл — хендлери Telegram
-├── database.py       # Підключення та операції з MySQL
-├── config.py         # Зчитування змінних середовища
-├── requirements.txt  # Залежності Python
-├── schema.sql        # SQL-схема бази даних
-├── .env.example      # Шаблон файлу конфігурації
+├── app/
+│   ├── __init__.py
+│   ├── config.py        # Зчитування змінних середовища
+│   ├── database.py      # Підключення та операції з MySQL
+│   ├── handlers.py      # Обробники повідомлень та callback
+│   └── keyboards.py     # Клавіатури та кнопки
+├── .github/
+│   └── workflows/
+│       └── deploy.yml   # GitHub Actions — автодеплой
+├── main.py              # Точка входу — запуск бота
+├── requirements.txt     # Залежності Python
+├── schema.sql           # SQL-схема бази даних
+├── .env.example         # Шаблон файлу конфігурації
 └── .gitignore
 ```
 
@@ -88,7 +95,7 @@ KEY_GEORGIA=vless://твій-ключ-грузія
 ### 6. Запустити бота
 
 ```bash
-python bot.py
+python main.py
 ```
 
 ---

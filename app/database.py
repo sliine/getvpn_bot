@@ -3,7 +3,7 @@ from datetime import datetime
 
 import aiomysql
 
-from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
+from app.config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
 
 logger = logging.getLogger(__name__)
 
@@ -38,10 +38,10 @@ async def init_db() -> None:
             await cur.execute("SET sql_notes = 0;")
             await cur.execute("""
                 CREATE TABLE IF NOT EXISTS users (
-                    id           BIGINT PRIMARY KEY COMMENT 'Telegram user ID',
-                    username     VARCHAR(255)  DEFAULT NULL COMMENT 'Telegram username',
-                    full_name    VARCHAR(255)  NOT NULL     COMMENT 'Ім''я та прізвище',
-                    phone_number VARCHAR(20)   NOT NULL     COMMENT 'Номер телефону',
+                    id           BIGINT        NOT NULL PRIMARY KEY COMMENT 'Telegram user ID',
+                    username     VARCHAR(255)  DEFAULT NULL          COMMENT 'Telegram @username',
+                    full_name    VARCHAR(255)  NOT NULL              COMMENT 'Ім''я та прізвище',
+                    phone_number VARCHAR(20)   NOT NULL              COMMENT 'Номер телефону (+380...)',
                     is_confirmed BOOLEAN       NOT NULL DEFAULT FALSE,
                     confirmed_at DATETIME      DEFAULT NULL,
                     created_at   DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP
